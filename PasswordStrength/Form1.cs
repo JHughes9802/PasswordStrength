@@ -1,4 +1,10 @@
-﻿using System;
+﻿/* Ermias G.
+ * Alicia Nguyen
+ * Jordan Hughes
+ * This program tests the password the user inputs and gives feedback dependent on how 
+ * "strong" or "weak" it is.*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +27,8 @@ namespace PasswordStrength
         {
             lblResult.Show();
             string password = txtPassword.Text;
+
+            //Instantiation of all necessary variables
             int strength = 0;
             int hasUpper = 0;
             int hasLower = 0;
@@ -28,6 +36,8 @@ namespace PasswordStrength
             int hasDigit = 0;
             int longEnough = 0;
 
+            /*Numerous if statements instead of using else if 
+             * so it doesn't immediately break out after meeting one condition*/
             if (password.Any(char.IsUpper))
             {
                 hasUpper = 1;
@@ -49,8 +59,11 @@ namespace PasswordStrength
                 longEnough = 1;
             }
             
+            /*Adding all constraints for the password together for use in the following
+             if and else if statements*/
             strength = hasUpper + hasLower + hasSymbol + hasDigit + longEnough;
 
+            //If and else if statements to give the user feedback based on their password
             if(strength == 5)
             {
                 lblResult.Text = "Strong";
